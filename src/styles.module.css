@@ -124,6 +124,13 @@ a {
   background-color: #333333;
 }
 
+.link {
+color: var(--fds-blue);
+composes: baseGlowText;
+text-decoration: underline;
+cursor: pointer;
+}
+
 .container {
   min-height: 100vh;
   width: 100vw;

@@ -5,6 +5,7 @@ import { persistentReducer } from "redux-pouchdb-plus";
 
 const initialState = {
     status: 'noAccount',
+    locked: true
 };
 
 function accountState(state = initialState, action) {

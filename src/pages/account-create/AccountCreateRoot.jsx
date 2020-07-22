@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import defaultAvatar from "images/defaultAvatar.png"
+import EthCrypto from "eth-crypto"
 
 // Sub-pages
 import AccountCreateIntro from "./pages/AccountCreateIntro"
@@ -48,19 +49,21 @@ export function AccountCreateRoot() {
     const createAccount = async () => {
         setStage(creatingAccountId)
         const wallet0 = wallet.derivePath("m/44'/60'/0'/0/0")
-        const wallet1 = wallet.derivePath("m/44'/60'/1'/0/0")
-        const wallet2 = wallet.derivePath("m/44'/60'/2'/0/0")
+        const wallet1 = wallet.derivePath("m/44'/60'/0'/0/1")
+        const wallet2 = wallet.derivePath("m/44'/60'/0'/0/2")
+
         setItem0(true)
         const hash = await fds.Account.SwarmStore.SF.set(
-            wallet0.address,
+            wallet.address,
             'userdata',
-            wallet0.privateKey,
+            wallet.privateKey,
             {
                 username: username,
                 useravatar: avatar,
-                publicKey: wallet0.publicKey,
-                address: wallet0.address,
-                addresses: [wallet0.address, wallet1.address]
+                publicKey: wallet.publicKey,
+                address: wallet.address,
+                addresses: [wallet0.address, wallet1.address],
+                keyPairNonce: 2
             })
         setItem1(true)
         const tempFolderId = new Date().toISOString()
@@ -85,9 +88,9 @@ export function AccountCreateRoot() {
                 content: {}
             })
         const hash2 = await fds.Account.SwarmStore.SF.set(
-            wallet0.address,
+            wallet.address,
             'fairdrive',
-            wallet0.privateKey,
+            wallet.privateKey,
             {
                 "Temporary": {
                     name: 'Temporary',
@@ -100,6 +103,8 @@ export function AccountCreateRoot() {
             })
         setItem2(true)
         // encrypt mnemonic
+        const mnemonicJoined = mnemonic.join(" ")
+
         const encryptedPrivateKey = await window.myWeb3.eth.accounts.encrypt(wallet.privateKey, password);
 
         // encrypt wallet0
@@ -109,8 +114,11 @@ export function AccountCreateRoot() {
             avatar: avatar,
             address: wallet.address,
             publicKey: wallet.publicKey,
-            privateKey: encryptedPrivateKey
+            mnemonic: mnemonicJoined,
+            privateKey: encryptedPrivateKey,
+            keypairNonce: 2
         }
+
         dispatch({ type: "SET_ACCOUNT", data: userObject })
         setItem3(true)
     }

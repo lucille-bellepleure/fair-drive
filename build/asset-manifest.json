@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.798c84ef.chunk.css",
+    "main.js": "/static/js/main.67165868.chunk.js",
+    "main.js.map": "/static/js/main.67165868.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.1f650f55.js",
+    "runtime-main.js.map": "/static/js/runtime-main.1f650f55.js.map",
+    "static/js/2.deae1b14.chunk.js": "/static/js/2.deae1b14.chunk.js",
+    "static/js/2.deae1b14.chunk.js.map": "/static/js/2.deae1b14.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.9e31af35189c2e07d0ceb5dfa96e8585.js": "/precache-manifest.9e31af35189c2e07d0ceb5dfa96e8585.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.798c84ef.chunk.css.map": "/static/css/main.798c84ef.chunk.css.map",
+    "static/js/2.deae1b14.chunk.js.LICENSE.txt": "/static/js/2.deae1b14.chunk.js.LICENSE.txt",
+    "static/media/styles.module.css": "/static/media/FairDrive-Sprite-doublesize.22b00e11.png",
+    "static/media/defaultAvatar.png": "/static/media/defaultAvatar.e9316813.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1f650f55.js",
+    "static/js/2.deae1b14.chunk.js",
+    "static/css/main.798c84ef.chunk.css",
+    "static/js/main.67165868.chunk.js"
+  ]
+}
