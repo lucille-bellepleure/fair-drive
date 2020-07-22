@@ -6,12 +6,9 @@ export function AccountCreateIntro({ createStage, restoreStage, exitStage }) {
 
     return (
         <div className={accountstyles.container}>
-            <div className={accountstyles.closeButton} onClick={exitStage}>
-                <div className={main.closeicon} />
-            </div>
-            <div className={accountstyles.title}>Welcome to FairDrive</div>
+            <div className={accountstyles.title}>Welcome to Fairdrive</div>
             <div className={accountstyles.subtitle}>
-                In the next steps you will be creating a Fair Drive Wallet.
+                In the next steps you will be creating a Fairdrive Wallet.
             </div>
 
             <div tabIndex="2" className={main.button} onClick={createStage}>

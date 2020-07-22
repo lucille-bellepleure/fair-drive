@@ -66,6 +66,13 @@
   margin: 20px 0px 30px 0px;
 }
 
+.link {
+color: var(--fds-blue);
+composes: baseGlowText from "../../styles.module.css";
+text-decoration: underline;
+cursor: pointer;
+}
+
 .username {
   composes: bodyBold from "../../styles.module.css";
   color: var(--sc-grey4);
@@ -102,7 +109,7 @@
   background-repeat: no-repeat;
   height: 90px;
   width: 90px;
-  margin-top: 30px;
+  margin-top: 50px;
 }
 
 .avatarImage {
@@ -163,7 +170,7 @@
   padding: 6px;
   width: 30px;
   height: 30px;
-  background-color: var(--sc-blue);
+  background-color: var(--fds-blue);
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.5);
@@ -191,24 +198,55 @@
 .usernameinputbox {
   width: 75vw;
   display: flex;
-  flex-direction: column;
-  place-items: center center;
+  flex-direction: row;
   margin-bottom: 10vh;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
 }
 
 .usernameinput {
-  composes: bodyDefault from "../../styles.module.css";
-  width: 205px;
-  color: var(--sc-grey4);
+  composes: bodyBold from "../../styles.module.css";
+  width: 55vw;
+  color: var(--text-light);
   text-align: center;
+  outline: none;
   padding-bottom: 5px;
+  margin-right: 10px;
   border: 0px;
-  border-bottom: 1px solid var(--sc-grey4);
+  border-bottom: 1px solid var(--fds-blue);
   background-color: transparent;
 }
 
 .usernameinput:not(:placeholder-shown) {
-  border-bottom: 1px solid var(--sc-blue);
+  border-bottom: 1px solid var(--fds-blue);
+}
+
+.mnemonicinputbox {
+  width: 75vw;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5vh;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+}
+
+.mnemonicinput {
+  composes: bodyBold from "../../styles.module.css";
+  width: 55vw;
+  color: var(--text-light);
+  text-align: left;
+  outline: none;
+  padding-bottom: 5px;
+  margin-right: 10px;
+  border: 0px;
+  border-bottom: 1px solid var(--fds-blue);
+  background-color: transparent;
+}
+
+.mnemonicinput:not(:placeholder-shown) {
+  border-bottom: 1px solid var(--fds-blue);
 }
 
 .passwordflex {
@@ -229,6 +267,7 @@
   margin-top: 40px;
 }
 
+
 .confirm {
   background-color: #ffffff !important;
 }
@@ -240,6 +279,22 @@
 
 .sliderbox {
   padding: 10px 0px 20px 0px;
+}
+
+.statusbox {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 20px auto;
+  grid-template-rows: auto;
+  color: #333333;
+  column-gap: 20px;
+  row-gap: 8px;
+  align-items: center;
+}
+
+
+.statusboxitemactive {
+  color: var(--fds-blue);
 }
 
 .blacktext {
@@ -288,11 +343,6 @@
   margin-bottom: -26px;
 }
 
-.textField Input {
-  background-color: none;
-  color: #fff;
-}
-
 input[type="range"] {
   -webkit-appearance: none;
   width: 168px;
@@ -306,15 +356,15 @@ input[type="range"]::-webkit-slider-runnable-track {
   width: 168px;
   height: 2px;
   cursor: pointer;
-  background: var(--sc-grey2);
+  background: var(--fds-dark);
 }
 
 input[type="range"]::-webkit-slider-thumb {
-  border: 1px solidar(--sc-grey2);
+  border: 1px solidar(--fds-dark);
   height: 18px;
   width: 18px;
   border-radius: 50%;
-  background: var(--sc-blue);
+  background: var(--fds-blue);
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -8px;
@@ -324,10 +374,10 @@ input[type="range"]::-moz-range-track {
   width: 168px;
   height: 2px;
   cursor: pointer;
-  background: var(--sc-grey2);
+  background: var(--fds-dark);
 }
 input[type="range"]::-moz-range-thumb {
-  border: 1px solidar(--sc-grey2);
+  border: 1px solidar(--fds-dark);
   height: 18px;
   width: 18px;
   border-radius: 50%;

@@ -4,18 +4,26 @@ import accountstyles from "../account-create.module.css"
 import ethers from "ethers"
 
 async function createMnemonicArray() {
-    let wallet = await ethers.Wallet.createRandom()
-    let randomMnemonic = wallet.mnemonic.phrase.toString()
+    window.ethers = ethers
+    let bytes = ethers.utils.randomBytes(16);
+    let language = ethers.wordlists.en;
+    let randomMnemonic = await ethers.utils.entropyToMnemonic(bytes, language)
+    let mnemonic = randomMnemonic
+    let wallet = await ethers.utils.HDNode.fromMnemonic(randomMnemonic)
     let array = randomMnemonic.split(" ")
-    console.log(array)
-    return array
+
+    window.wallet = wallet
+    return { array, wallet }
 }
 
-export function MnemonicShow({ nextStage, exitStage, setMnemonic, mnemonic }) {
+export function MnemonicShow({ nextStage, exitStage, setMnemonic, mnemonic, setWallet, setCollection }) {
 
     useEffect(() => {
-        createMnemonicArray().then(array => setMnemonic(array))
-    }, [setMnemonic])
+        createMnemonicArray().then(({ array, wallet }) => {
+            setWallet(wallet)
+            setMnemonic(array)
+        })
+    }, [setMnemonic, setWallet])
 
     return (
         <div className={accountstyles.container}>
