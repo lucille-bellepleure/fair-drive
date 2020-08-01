@@ -20,29 +20,22 @@ const MyIdentity = ({
             <div className={createAccount.closeButton} onClick={exitStage}>
                 <div className={styles.exitgrayicon} />
             </div>
-            <div onClick={shortCode}>CREATE SHORT</div>
-            <div onClick={resolveShort}>FIND SHORT</div>
+            {/* <div onClick={shortCode}>CREATE SHORT</div>
+            <div onClick={resolveShort}>FIND SHORT</div> */}
             <div className={createAccount.placeholder}>
                 <img className={createAccount.avatarImage} src={avatar} alt="avatar" />
             </div>
-            <div className={createAccount.uploadbtn} />
-            <div className={createAccount.uploadicon} onClick={avatarStage}>
-                <div className={createAccount.arrowup} />
-            </div>
-            <div className={createAccount.usernameinputbox}>
-                <input
-                    className={createAccount.usernameinput}
-                    placeholder="Username"
-                    value={username}
-                    onChange={e => setUsername(e.target.value)}
-                />
-            </div>
+            <div className={createAccount.subtitle}>{username}</div>
+
             <div>
                 <QRCode size="128" value={address}></QRCode>
             </div>
-            {/* <div onClick={() => } className={createAccount.showkeystoggle}>show publicKey</div> */}
             <div className={createAccount.flexer} />
-            <div onClick={nextStage} className={createAccount.removeButton}>Remove account</div>
+            <div tabIndex="2" className={styles.button} onClick={nextStage}>
+                <div>
+                    <div className={styles.buttontext}>edit account</div>
+                </div>
+            </div>
         </div>
     );
 

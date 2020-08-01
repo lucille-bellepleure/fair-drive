@@ -49,7 +49,7 @@ export function MnemonicCheck({
   }
 
   return (
-    <div className={accountstyles.formcontainer}>
+    <div className={accountstyles.container}>
 
       <div className={accountstyles.closeButton} onClick={exitStage}>
         <div className={styles.closeicon} />
@@ -106,18 +106,19 @@ export function MnemonicCheck({
           {word3Validity ? <Check style={{ color: '#92e7fa' }}></Check> :
             <Check style={{ color: '#222222' }}></Check>}
         </div>
-        {word0Validity && word1Validity && word2Validity && word3Validity ?
-          <div tabIndex="2" className={styles.button} onClick={nextStage}>
-            <div>
-              <div className={styles.buttontext}>continue</div>
-            </div>
-          </div>
-          : ""}
+
 
 
 
 
       </div>
+      {word0Validity && word1Validity && word2Validity && word3Validity ?
+        <div tabIndex="2" className={styles.button} onClick={nextStage}>
+          <div>
+            <div className={styles.buttontext}>continue</div>
+          </div>
+        </div>
+        : ""}
 
 
     </div >

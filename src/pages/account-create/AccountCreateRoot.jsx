@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import defaultAvatar from "images/defaultAvatar.png"
 import EthCrypto from "eth-crypto"
+import { Fairdrive } from "fairdrive-lib"
 
 // Sub-pages
 import AccountCreateIntro from "./pages/AccountCreateIntro"
@@ -25,7 +26,9 @@ const creatingAccountId = "creatingAccountId"
 
 export function AccountCreateRoot() {
 
-    const fds = window.fds
+    const fairdrive = new Fairdrive("http://localhost:8080")
+    window.fairdrive = fairdrive
+
     const dispatch = useDispatch()
 
     const [stage, setStage] = useState(accountCreateIntroId)
@@ -48,75 +51,34 @@ export function AccountCreateRoot() {
     // Create account function 
     const createAccount = async () => {
         setStage(creatingAccountId)
-        const wallet0 = wallet.derivePath("m/44'/60'/0'/0/0")
-        const wallet1 = wallet.derivePath("m/44'/60'/0'/0/1")
-        const wallet2 = wallet.derivePath("m/44'/60'/0'/0/2")
-
-        setItem0(true)
-        const hash = await fds.Account.SwarmStore.SF.set(
-            wallet.address,
-            'userdata',
-            wallet.privateKey,
-            {
-                username: username,
-                useravatar: avatar,
-                publicKey: wallet.publicKey,
-                address: wallet.address,
-                addresses: [wallet0.address, wallet1.address],
-                keyPairNonce: 2
-            })
-        setItem1(true)
-        const tempFolderId = new Date().toISOString()
-        const tempFolderFeed = await fds.Account.SwarmStore.SF.set(
-            wallet1.address,
-            'fairdrive-temp',
-            wallet1.privateKey,
-            {
-                keyIndex: 1,
-                name: "Temporary",
-                ownerAddress: wallet1.address,
-                content: {}
-            })
-        const dappFolderFeed = await fds.Account.SwarmStore.SF.set(
-            wallet2.address,
-            'fairdrive-dappdata',
-            wallet2.privateKey,
-            {
-                keyIndex: 2,
-                name: "DappData",
-                ownerAddress: wallet2.address,
-                content: {}
-            })
-        const hash2 = await fds.Account.SwarmStore.SF.set(
-            wallet.address,
-            'fairdrive',
-            wallet.privateKey,
-            {
-                "Temporary": {
-                    name: 'Temporary',
-                    address: wallet1.address
-                },
-                "DappData": {
-                    name: 'DappData',
-                    address: wallet2.address
-                }
-            })
-        setItem2(true)
-        // encrypt mnemonic
         const mnemonicJoined = mnemonic.join(" ")
 
-        const encryptedPrivateKey = await window.myWeb3.eth.accounts.encrypt(wallet.privateKey, password);
+        const result = await fairdrive.newFairdrive(mnemonicJoined)
+        setItem0(true)
+
+        // encrypt mnemonic
+        const publicKey = await EthCrypto.publicKeyByPrivateKey(result.wallet.privateKey)
+        const encryptedMnemonic = await
+            EthCrypto
+                .encryptWithPublicKey(
+                    publicKey,
+                    mnemonic
+                )
+        setItem1(true)
+
+        //encrypt privatekey
+        const encryptedPrivateKey = await window.myWeb3.eth.accounts.encrypt(result.wallet.privateKey, password);
+        setItem2(true)
 
         // encrypt wallet0
         const userObject = {
             status: 'accountSet',
             username: username,
             avatar: avatar,
-            address: wallet.address,
-            publicKey: wallet.publicKey,
-            mnemonic: mnemonicJoined,
+            address: result.wallet.address,
+            publicKey: result.wallet.publicKey,
+            mnemonic: encryptedMnemonic,
             privateKey: encryptedPrivateKey,
-            keypairNonce: 2
         }
 
         dispatch({ type: "SET_ACCOUNT", data: userObject })
@@ -137,11 +99,11 @@ export function AccountCreateRoot() {
         case mnemonicShowId:
             return (
                 <MnemonicShow
+                    fairdrive={fairdrive}
                     nextStage={() => setStage(mnemonicCheckId)}
                     exitStage={() => setStage(accountCreateIntroId)}
                     setMnemonic={setMnemonic}
                     mnemonic={mnemonic}
-                    setWallet={setWallet}
                     setCollection={setCollection}
                 />
             )

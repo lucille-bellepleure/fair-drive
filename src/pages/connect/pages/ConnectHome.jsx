@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import main from "styles.module.css";
 import connect from "../connect.module.css";
+import { useDispatch } from "react-redux"
 
 export function ConnectHome({
     nextStage,
@@ -10,6 +11,7 @@ export function ConnectHome({
     account = { locked: true }
 }) {
     console.log('connect home')
+    const dispatch = useDispatch()
     return (
 
         <div className={connect.container}>
@@ -27,7 +29,7 @@ export function ConnectHome({
                             </div>
                         </div>
                         :
-                        <div tabIndex="2" className={main.button} onClick={nextStage}>
+                        <div tabIndex="2" className={main.button} onClick={() => dispatch({ type: 'SET_SYSTEM', data: { passwordShow: true } })}>
                             <div>
                                 <div className={main.buttontext}>Unlock to allow</div>
                             </div>

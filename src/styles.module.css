@@ -158,6 +158,12 @@ cursor: pointer;
   line-height: 36px;
 }
 
+.title {
+  composes: mainTitle1;
+  color: white;
+  text-align: center;
+}
+
 /* Files */
 .breadcrumb {
   composes: mainTitle2;
@@ -394,4 +400,69 @@ cursor: pointer;
 .bigbalance {
   composes: mainTitle2;
   color: var(--fds-blue);
+}
+
+.flexer {
+  margin: 10px;
+}
+
+.dialogBox {
+  background-color: var(--bg-dark);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+.dialogTitle {
+  composes: bodyBold;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.dialogClose {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  margin: 20px;
+}
+
+.dialogAvatar {
+  border-radius: 50%;
+  height: 64px;
+  width: 64px;
+  margin-bottom: 60px;
+}
+
+.dialogPasswordBox {
+  width: 75vw;
+  display: flex;
+  flex-direction: column;
+  place-items: center center;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.dialogPassword {
+  composes: bodyDefault;
+  width: 205px;
+  color: white;
+  text-align: left;
+  padding-bottom: 5px;
+  border: 0px;
+  border-bottom: 1px solid var(--fds-blue);
+  background-color: transparent;
+}
+
+.dialogPasswordiconbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  margin-top: -40px;
+  max-width: 520px;
+  padding: 20px;
 }

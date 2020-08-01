@@ -2,28 +2,23 @@ import React, { useEffect } from "react"
 import main from "styles.module.css"
 import accountstyles from "../account-create.module.css"
 import ethers from "ethers"
+import { Fairdrive } from "fairdrive-lib"
 
-async function createMnemonicArray() {
-    window.ethers = ethers
-    let bytes = ethers.utils.randomBytes(16);
-    let language = ethers.wordlists.en;
-    let randomMnemonic = await ethers.utils.entropyToMnemonic(bytes, language)
-    let mnemonic = randomMnemonic
-    let wallet = await ethers.utils.HDNode.fromMnemonic(randomMnemonic)
-    let array = randomMnemonic.split(" ")
 
-    window.wallet = wallet
-    return { array, wallet }
-}
 
-export function MnemonicShow({ nextStage, exitStage, setMnemonic, mnemonic, setWallet, setCollection }) {
+export function MnemonicShow({ nextStage, exitStage, setMnemonic, mnemonic, setWallet, setCollection, fairdrive }) {
 
     useEffect(() => {
-        createMnemonicArray().then(({ array, wallet }) => {
-            setWallet(wallet)
+        createMnemonicArray().then((array) => {
             setMnemonic(array)
         })
-    }, [setMnemonic, setWallet])
+    }, [setMnemonic])
+
+    async function createMnemonicArray() {
+        const mnemonic = await fairdrive.generateMnemonic()
+        const array = mnemonic.split(" ")
+        return array
+    }
 
     return (
         <div className={accountstyles.container}>

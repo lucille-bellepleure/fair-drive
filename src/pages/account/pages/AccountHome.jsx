@@ -41,13 +41,12 @@ const AccountHome = ({
                     <div>Verify a friend</div>
                 </div>
             </div>
-            {/* <div onClick={() => } className={createAccount.showkeystoggle}>show publicKey</div> */}
-            <div className={createAccount.flexer} />
             <div tabIndex="2" className={styles.button} onClick={nextStage}>
                 <div>
                     <div className={styles.buttontext}>remove account</div>
                 </div>
             </div>
+
         </div>
     );
 

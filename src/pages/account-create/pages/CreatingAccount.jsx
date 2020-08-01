@@ -17,39 +17,39 @@ export function CreatingAccount({ accountCreateDone, item0, item1, item2, item3,
           <Check style={{ color: '#333333' }}></Check>
         }
         {item0 ?
-          <div style={{ color: '#92e7fa' }}>Creating wallet</div>
-          :
-          <div>Creating wallet</div>
-        }
-        {item1 ?
-          <Check style={{ color: '#92e7fa' }}></Check>
-          :
-          <Check style={{ color: '#333333' }}></Check>
-        }
-        {item1 ?
-          <div style={{ color: '#92e7fa' }}>Setting storage on Swarm</div>
-          :
-          <div>Setting storage on Swarm</div>
-        }
-        {item2 ?
-          <Check style={{ color: '#92e7fa' }}></Check>
-          :
-          <Check style={{ color: '#333333' }}></Check>
-        }
-        {item2 ?
           <div style={{ color: '#92e7fa' }}>Creating Fairdrive</div>
           :
           <div>Creating Fairdrive</div>
         }
+        {item1 ?
+          <Check style={{ color: '#92e7fa' }}></Check>
+          :
+          <Check style={{ color: '#333333' }}></Check>
+        }
+        {item1 ?
+          <div style={{ color: '#92e7fa' }}>Encrypting Private Key</div>
+          :
+          <div>Encrypting Private Key</div>
+        }
+        {item2 ?
+          <Check style={{ color: '#92e7fa' }}></Check>
+          :
+          <Check style={{ color: '#333333' }}></Check>
+        }
+        {item2 ?
+          <div style={{ color: '#92e7fa' }}>Encrypting Mnemonic</div>
+          :
+          <div>Encrypting Mnemonic</div>
+        }
         {item3 ?
           <Check style={{ color: '#92e7fa' }}></Check>
           :
           <Check style={{ color: '#333333' }}></Check>
         }
         {item3 ?
-          <div style={{ color: '#92e7fa' }}>Encrypting keys</div>
+          <div style={{ color: '#92e7fa' }}>Storing Fairdrive Account</div>
           :
-          <div>Encrypting keys</div>
+          <div>Storing Fairdrive Account</div>
         }
       </div>
 

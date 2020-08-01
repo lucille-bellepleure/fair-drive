@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import TodolistIcon from "images/todolist.png"
-import resolveConnect from "helpers/resolveConnect"
 
 // Sub-pages
 import ConnectHome from './pages/ConnectHome';
@@ -31,10 +30,10 @@ export function ConnectRoot() {
 
     const handleResolveConnect = async (id, privateKey, password, mnemonic) => {
         let time = new Date().toISOString()
-        const res = await resolveConnect(time, id, privateKey, '1234', mnemonic)
-        setAppname(res.appname)
-        setAppicon(res.appicon)
-        console.log(res)
+        // const res = await resolveConnect(time, id, privateKey, '1234', mnemonic)
+        // setAppname(res.appname)
+        // setAppicon(res.appicon)
+        // console.log(res)
     }
 
     const dispatch = useDispatch()
