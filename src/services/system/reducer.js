@@ -6,7 +6,8 @@ const initialState = {
     'showPasswordUnlock': false,
     'hasUser': false,
     'passWord': null,
-    'mnemonic': null
+    'mnemonic': null,
+    'unlocked': false
 };
 
 function system(state = initialState, action) {

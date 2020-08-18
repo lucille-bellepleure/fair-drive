@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import defaultAvatar from "images/defaultAvatar.png"
 import EthCrypto from "eth-crypto"
-import { Fairdrive } from "fairdrive-lib"
 
 // Sub-pages
 import AccountCreateIntro from "./pages/AccountCreateIntro"
@@ -25,9 +24,6 @@ const choosePasswordId = "choosePasswordId"
 const creatingAccountId = "creatingAccountId"
 
 export function AccountCreateRoot() {
-
-    const fairdrive = new Fairdrive("http://localhost:8080")
-    window.fairdrive = fairdrive
 
     const dispatch = useDispatch()
 
@@ -53,7 +49,7 @@ export function AccountCreateRoot() {
         setStage(creatingAccountId)
         const mnemonicJoined = mnemonic.join(" ")
 
-        const result = await fairdrive.newFairdrive(mnemonicJoined)
+        const result = await window.fairdrive.newFairdrive(mnemonicJoined)
         setItem0(true)
 
         // encrypt mnemonic
@@ -62,7 +58,7 @@ export function AccountCreateRoot() {
             EthCrypto
                 .encryptWithPublicKey(
                     publicKey,
-                    mnemonic
+                    mnemonicJoined
                 )
         setItem1(true)
 
@@ -99,7 +95,7 @@ export function AccountCreateRoot() {
         case mnemonicShowId:
             return (
                 <MnemonicShow
-                    fairdrive={fairdrive}
+                    fairdrive={window.fairdrive}
                     nextStage={() => setStage(mnemonicCheckId)}
                     exitStage={() => setStage(accountCreateIntroId)}
                     setMnemonic={setMnemonic}

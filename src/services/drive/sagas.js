@@ -7,7 +7,7 @@ import unlockSystemSaga from "./sagas/unlockSystemSaga"
 
 /******************************* Watchers *************************************/
 
-export default function* systemRootSaga() {
+export default function* driveRootSaga() {
     //yield systemSaga()
-    yield takeEvery(t.UNLOCK_SYSTEM, unlockSystemSaga);
+    //yield takeEvery(t.SET_DRIVE, setDriveSaga);
 }

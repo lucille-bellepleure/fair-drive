@@ -39,7 +39,7 @@ export default function PasswordUnlock({ open }) {
                 </div>
 
                 <div tabIndex="2" className={styles.button}
-                    onClick={() => dispatch({ type: 'SET_SYSTEM', data: { showPasswordUnlock: false, passWord: password } })}
+                    onClick={() => dispatch({ type: 'UNLOCK_SYSTEM', data: { passWord: password } })}
                 >
                     <div>
                         <div className={styles.buttontext}>continue</div>
@@ -52,21 +52,7 @@ export default function PasswordUnlock({ open }) {
                     Get me out of here
                         </div>
 
-                <div className={styles.dialogPasswordiconbox}>
-                    <div
-                        onClick={() => dispatch({ type: 'SET_SYSTEM', data: { showPasswordUnlock: false } })}
-                        className={[styles.iconbuttonbig, styles.cancel].join(" ")}
-                    >
-                        <div className={styles.xmarkicon} />
-                    </div>
-                    <div
-                        tabIndex="2"
-                        onClick={() => dispatch({ type: 'SET_SYSTEM', data: { showPasswordUnlock: false, passWord: password } })}
-                        className={[styles.iconbuttonbig, styles.confirm].join(" ")}
-                    >
-                        <div className={styles.nextblueicon} />
-                    </div>
-                </div>
+
 
 
 
